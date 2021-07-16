@@ -8,8 +8,8 @@ class Process {
 
     init {
         File("/proc/").listFiles().forEach {
-            val pid = it.path.
-                substring(6)
+            val pid = it.path
+                .substring(6)
                 .toIntOrNull()
 
             if(pid == null) {
