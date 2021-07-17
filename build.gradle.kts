@@ -1,5 +1,5 @@
-group = "apollo"
-version = "1.0-SNAPSHOT"
+import org.gradle.kotlin.dsl.*
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     application
@@ -16,4 +16,16 @@ dependencies {
 
 application {
     mainClass.set("apollo.MainKt")
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "apollo.MainKt"
+    }
+
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
