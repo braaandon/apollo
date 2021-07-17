@@ -27,10 +27,9 @@ class Process {
     }
 
     fun read(address: Long, size: Int): Memory {
-        val buf = Memory(size.toLong())
-
-        val local = unix.iovec()
-        val remote = unix.iovec()
+        var local = unix.iovec()
+        var remote = unix.iovec()
+        var buf = Memory(size.toLong())
 
         local.iov_base = buf
         local.iov_len = size
@@ -41,5 +40,19 @@ class Process {
         unix.process_vm_readv(_pid, local, 1, remote, 1, 0)
 
         return buf
+    }
+
+    fun write(address: Long, dat: Memory) {
+        var local = unix.iovec()
+        var remote = unix.iovec()
+        val size = dat.size().toInt()
+
+        local.iov_base = dat
+        local.iov_len = size
+
+        remote.iov_base = Pointer.createConstant(address)
+        remote.iov_len = size
+
+        unix.process_vm_writev(_pid, local, 1, remote, 1, 0)
     }
 }
