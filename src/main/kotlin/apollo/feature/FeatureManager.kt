@@ -3,11 +3,11 @@ package apollo.feature
 import apollo.feature.impl.Feature;
 
 class FeatureManager(vararg features: Feature) {
-    val features = features
+    val _features = features
 
     fun get(name: String): Feature {
-        features.forEach({
-            if(it.name == name) {
+        _features.forEach({
+            if(it._name == name) {
                 return it
             }
         })

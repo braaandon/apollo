@@ -2,7 +2,7 @@ package apollo.util
 
 import java.io.File
 import com.sun.jna.*
-import apollo.util.*;
+import apollo.util.*
 
 class Process {
     var _pid: Int = 0
