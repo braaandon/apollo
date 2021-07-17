@@ -10,12 +10,12 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation("com.github.jonatino:Java-Memory-Manipulation:2.1.2")
-}
-
 application {
     mainClass.set("apollo.MainKt")
+}
+
+dependencies {
+    implementation("net.java.dev.jna:jna:5.8.0")
 }
 
 tasks.withType<Jar> {
