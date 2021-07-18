@@ -6,23 +6,11 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
     implementation("net.java.dev.jna:jna:5.8.0")
-	implementation(platform("org.lwjgl:lwjgl-bom:3.2.3"))
-
-	implementation("org.lwjgl", "lwjgl")
-	implementation("org.lwjgl", "lwjgl-assimp")
-	implementation("org.lwjgl", "lwjgl-glfw")
-	implementation("org.lwjgl", "lwjgl-opengl")
-	implementation("org.lwjgl", "lwjgl-stb")
-	runtimeOnly("org.lwjgl", "lwjgl", classifier = "natives-linux")
-	runtimeOnly("org.lwjgl", "lwjgl-assimp", classifier = "natives-linux")
-	runtimeOnly("org.lwjgl", "lwjgl-glfw", classifier = "natives-linux")
-	runtimeOnly("org.lwjgl", "lwjgl-opengl", classifier = "natives-linux")
-	runtimeOnly("org.lwjgl", "lwjgl-stb", classifier = "natives-linux")
 }
 
 tasks.withType<ShadowJar> {
