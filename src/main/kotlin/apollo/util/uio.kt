@@ -1,6 +1,7 @@
 package apollo.util
 
-import com.sun.jna.*
+import com.sun.jna.Native
+import com.sun.jna.NativeLibrary
 
 object uio {
     init {

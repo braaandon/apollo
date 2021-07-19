@@ -1,7 +1,10 @@
 package apollo.feature.impl
 
+import apollo.sdk.Game
+
 open class Feature(name: String) {
-    var _name = name;
-    
+    val name = name
+    val game = Game()
+
     open fun on_loop() { /*...*/ }
 }

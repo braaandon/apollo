@@ -1,6 +1,6 @@
 package apollo.gui
 
-import javax.swing.*
+import javax.swing.JFrame
 
 class Window : JFrame() {
     init {
@@ -12,6 +12,6 @@ class Window : JFrame() {
     }
 
     fun render() {
-        isVisible = true;
+        isVisible = true
     }
 }

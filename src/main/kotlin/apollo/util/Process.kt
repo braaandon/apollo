@@ -1,11 +1,11 @@
 package apollo.util
 
 import java.io.File
-import com.sun.jna.*
-import apollo.util.*
+import com.sun.jna.Memory
+import com.sun.jna.Pointer
 
-class Process {
-    var _pid: Int = 0
+class Process(proc: String) {
+    var pid: Int = 0
 
     init {
         File("/proc/").listFiles().forEach {
@@ -13,17 +13,18 @@ class Process {
                 .substring(6)
                 .toIntOrNull()
 
-            if(pid == null) {
+            if (pid == null) {
                 return@forEach
             }
-                        
-            if("mcpelauncher" in 
-                File("/proc/$pid/cmdline").readText()) {
-                _pid = pid
+
+            if (proc in
+                File("/proc/$pid/cmdline").readText()
+            ) {
+                this.pid = pid
             }
         }
 
-        println("Process ID: $_pid")
+        println("Process ID: $pid")
     }
 
     fun read(address: Long, size: Int): Memory {
@@ -33,12 +34,12 @@ class Process {
 
         local.iov_base = buf
         local.iov_len = size
-    
+
         remote.iov_base = Pointer.createConstant(address)
         remote.iov_len = size
 
-        uio.process_vm_readv(_pid, local, 1, remote, 1, 0)
-        
+        uio.process_vm_readv(pid, local, 1, remote, 1, 0)
+
         return buf
     }
 
@@ -53,6 +54,21 @@ class Process {
         remote.iov_base = Pointer.createConstant(address)
         remote.iov_len = size
 
-        uio.process_vm_writev(_pid, local, 1, remote, 1, 0)
+        uio.process_vm_writev(pid, local, 1, remote, 1, 0)
+    }
+
+    fun getModule(mod: String): Long {
+        val reader = File("/proc/$pid/maps").bufferedReader()
+
+        for (line in reader.readLines()) {
+            if (line.contains(mod)) {
+                return line.substring(
+                    0,
+                    line.indexOf("-")
+                ).toLong(radix = 16)
+            }
+        }
+
+        throw Exception("$mod could not be found")
     }
 }
