@@ -18,7 +18,7 @@ object Reach : Feature("Reach") {
         val slider = JSlider(300, 700)
 
         slider.addChangeListener({
-            e: ChangeEvent ->
+            e ->
             val source = e.getSource() as JSlider
             modifier = (source.getValue().toFloat() / 100)
         })

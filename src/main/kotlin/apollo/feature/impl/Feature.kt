@@ -6,13 +6,19 @@ import javax.swing.JPanel
 
 open class Feature(name: String) {
     val name = name
-    val toggled = false
+    var toggled = false
 
     open fun onLoop() { /*...*/ }
     open fun onRender(): JPanel {
         val panel = JPanel(GridLayout())
-        val toggle = JCheckBox("Toggle")
-        panel.add(toggle)
+        val checkbox = JCheckBox("Toggle")
+        checkbox.addItemListener { 
+            e -> 
+            val source = e.getSource() as JCheckBox
+            toggled = source.isSelected() 
+        }
+
+        panel.add(checkbox)
         return panel
     }
 }

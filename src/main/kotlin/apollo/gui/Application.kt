@@ -32,10 +32,11 @@ class Application : JFrame() {
 
     fun run() {
         thread(start = true) {
-            fm.features.forEach {
-                while (true) {
-                    if(it.toggled)
+            while (true) {
+                fm.features.forEach {
+                    if (it.toggled) {
                         it.onLoop()
+                    }
                 }
             }
         }
