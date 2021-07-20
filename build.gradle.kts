@@ -6,11 +6,11 @@ plugins {
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-   implementation("net.java.dev.jna:jna:5.8.0")
+    implementation("net.java.dev.jna:jna:5.8.0")
 }
 
 tasks.withType<ShadowJar> {

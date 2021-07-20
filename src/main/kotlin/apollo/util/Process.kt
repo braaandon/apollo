@@ -1,8 +1,8 @@
 package apollo.util
 
-import java.io.File
 import com.sun.jna.Memory
 import com.sun.jna.Pointer
+import java.io.File
 
 class Process(proc: String) {
     var pid: Int = 0

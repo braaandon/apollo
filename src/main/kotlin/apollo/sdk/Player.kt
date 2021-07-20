@@ -1,6 +1,5 @@
 package apollo.sdk
 
-import apollo.sdk.Game
 import com.sun.jna.Memory
 
 object Player {

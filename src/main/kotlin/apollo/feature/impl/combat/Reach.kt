@@ -1,15 +1,29 @@
 package apollo.feature.impl.combat
 
-import apollo.sdk.Player
 import apollo.feature.impl.Feature
-
-/*
- * 1.17.10 reach address:
- * libminecraftpe.so+1768B4C
-*/
+import apollo.sdk.Player
+import javax.swing.JPanel
+import javax.swing.JSlider
+import javax.swing.event.ChangeEvent
 
 object Reach : Feature("Reach") {
-    override fun on_loop() {
-        Player.setReach(7.0f)
+    var modifier = 3.0f
+
+    override fun onLoop() {
+        Player.setReach(modifier)
+    }
+
+    override fun onRender(): JPanel {
+        val panel = super.onRender()
+        val slider = JSlider(300, 700)
+
+        slider.addChangeListener({
+            e: ChangeEvent ->
+            val source = e.getSource() as JSlider
+            modifier = (source.getValue().toFloat() / 100)
+        })
+
+        panel.add(slider)
+        return panel
     }
 }

@@ -1,15 +1,8 @@
 package apollo
 
-import apollo.gui.Window
-import apollo.feature.FeatureManager
-import apollo.feature.impl.combat.Reach
+import apollo.gui.Application
 
 fun main() {
-    val fm = FeatureManager(Reach)
-
-    fm.features.forEach {
-        while (true) {
-            it.on_loop()
-        }
-    }
+    val app = Application()
+    app.run()
 }
