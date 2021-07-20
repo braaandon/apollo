@@ -1,5 +1,6 @@
 package apollo
 
+import apollo.gui.Window
 import apollo.feature.FeatureManager
 import apollo.feature.impl.combat.Reach
 

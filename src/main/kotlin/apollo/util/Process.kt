@@ -24,7 +24,9 @@ class Process(proc: String) {
             }
         }
 
-        println("Process ID: $pid")
+        if (pid < 0) {
+            throw Exception("found no process")
+        }
     }
 
     fun read(address: Long, size: Int): Memory {

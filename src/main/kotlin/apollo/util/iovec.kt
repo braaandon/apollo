@@ -2,6 +2,7 @@ package apollo.util
 
 import com.sun.jna.Pointer
 import com.sun.jna.Structure
+import kotlin.collections.List
 
 class iovec : Structure() {
     @JvmField var iov_base: Pointer? = null

@@ -18,6 +18,6 @@ class FeatureManager(vararg features: Feature) {
             }
         })
 
-        throw Exception("Feature does not exist")
+        throw Exception("feature does not exist")
     }
 }
