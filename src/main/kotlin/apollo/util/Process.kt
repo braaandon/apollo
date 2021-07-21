@@ -24,7 +24,7 @@ open class Process(proc: String) {
             }
         }
 
-        if (pid < 0) {
+        if (pid <= 0) {
             throw Exception("found no process")
         }
     }
