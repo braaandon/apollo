@@ -16,8 +16,8 @@ object Player {
         )
 
         val mp = Game.resolveMultiLvl(
-            Game.mod_base + 0x09872110,
-            arrayListOf(0x18, 0x88, 0x80, 0x78, 0x40, 0x248, 0x268)
+            Game.mod_base + 0x098A78A8,
+            arrayListOf(0x38, 0x8, 0x290, 0x48, 0x0, 0x38, 0x1D8)
         )
 
         val mem = Memory(Float.SIZE_BYTES.toLong())
