@@ -2,12 +2,13 @@ package apollo.gui
 
 import apollo.feature.FeatureManager
 import apollo.feature.impl.combat.Reach
+import apollo.feature.impl.movement.Speed
 import javax.swing.JFrame
 import javax.swing.JTabbedPane
 import kotlin.concurrent.thread
 
 class Application : JFrame() {
-    val fm = FeatureManager(Reach)
+    val fm = FeatureManager(Reach, Speed)
 
     init {
         setTitle("Apollo")
@@ -37,6 +38,8 @@ class Application : JFrame() {
                     if (it.toggled) {
                         it.onLoop()
                     }
+
+                    Thread.sleep(250)
                 }
             }
         }

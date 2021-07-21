@@ -12,10 +12,10 @@ open class Feature(name: String) {
     open fun onRender(): JPanel {
         val panel = JPanel(GridLayout())
         val checkbox = JCheckBox("Toggle")
-        checkbox.addItemListener { 
-            e -> 
+        checkbox.addItemListener {
+            e ->
             val source = e.getSource() as JCheckBox
-            toggled = source.isSelected() 
+            toggled = source.isSelected()
         }
 
         panel.add(checkbox)

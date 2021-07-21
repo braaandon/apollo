@@ -1,25 +1,25 @@
-package apollo.feature.impl.combat
+package apollo.feature.impl.movement
 
 import apollo.feature.impl.Feature
 import apollo.sdk.Player
 import javax.swing.JPanel
 import javax.swing.JSlider
 
-object Reach : Feature("Reach") {
-    var modifier = 3.0f
+object Speed : Feature("Speed") {
+    var modifier = 0.1000000005f
 
     override fun onLoop() {
-        Player.setReach(modifier)
+        Player.setSpeed(modifier)
     }
 
     override fun onRender(): JPanel {
         val panel = super.onRender()
-        val slider = JSlider(300, 700)
+        val slider = JSlider(100, 900)
 
         slider.addChangeListener({
             e ->
             val source = e.getSource() as JSlider
-            modifier = (source.getValue().toFloat() / 100)
+            modifier = (source.getValue().toFloat() / 1000)
         })
 
         panel.add(slider)

@@ -4,7 +4,7 @@ import com.sun.jna.Memory
 import com.sun.jna.Pointer
 import java.io.File
 
-class Process(proc: String) {
+open class Process(proc: String) {
     var pid: Int = 0
 
     init {
@@ -57,6 +57,17 @@ class Process(proc: String) {
         remote.iov_len = size
 
         uio.process_vm_writev(pid, local, 1, remote, 1, 0)
+    }
+
+    fun resolveMultiLvl(address: Long, offsets: ArrayList<Short>): Long {
+        var res = address
+
+        for (offset in offsets) {
+            res = read(res, Long.SIZE_BYTES).getLong(0)
+            res += offset
+        }
+
+        return res
     }
 
     fun getModule(mod: String): Long {
